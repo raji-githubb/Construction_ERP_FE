@@ -2451,7 +2451,7 @@ def leadsource_create(request):
                 print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,'records':master_view,"save":True,"leadsource":"active"
         }
         return render(request, 'leadsource.html',context)
     except Exception as error:
@@ -3341,7 +3341,7 @@ def riskcategory_create(request):
                 print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,'records':master_view,"save":True,"riskcategory":"active"
         }
         return render(request, 'riskcategory.html',context)
     except Exception as error:
@@ -4251,7 +4251,7 @@ def project_create(request):
                 print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,'records':master_view,"save":True,"project":"active"
         }
         return render(request, 'project.html',context)
     except Exception as error:
@@ -7127,82 +7127,83 @@ def bidsubmission_delete(request,pk):
        
 def equipment_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view equipmentcategory')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view equipmentcategory')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            category_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     category_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view warehouse')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view warehouse')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            location_records = response['data']
-        else:
-            print('Data not found in response')
-        form=EquipmentForm(category_choice=category_records,location_choice=location_records)
-        MSID= get_service_plan('view equipment')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     location_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=EquipmentForm(category_choice=category_records,location_choice=location_records)
+        # MSID= get_service_plan('view equipment')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = EquipmentForm(request.POST,category_choice=category_records,location_choice=location_records)
-            if form.is_valid():
-                MSID= get_service_plan('create equipment')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['purchase_date'] = cleaned_data['purchase_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = EquipmentForm()
+        # if request.method == "POST":
+        #     form = EquipmentForm(request.POST,category_choice=category_records,location_choice=location_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create equipment')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['purchase_date'] = cleaned_data['purchase_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/equipment')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/equipment')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'equipment.html',context)
     except Exception as error:
@@ -13066,7 +13067,7 @@ def milestone_create(request):
                 print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,'records':master_view,"save":True,"milestone":"active"
         }
         return render(request, 'milestone.html',context)
     except Exception as error:
@@ -15711,81 +15712,82 @@ def qualitycontrolplan_delete(request,pk):
        
 def qualityinspector_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            user_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     user_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view project')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view project')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            project_records = response['data']
-        else:
-            print('Data not found in response')
-        form=QualityInspectorForm(user_choice=user_records,project_choice=project_records)
-        MSID= get_service_plan('view qualityinspector')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     project_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=QualityInspectorForm(user_choice=user_records,project_choice=project_records)
+        # MSID= get_service_plan('view qualityinspector')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = QualityInspectorForm(request.POST,user_choice=user_records,project_choice=project_records)
-            if form.is_valid():
-                MSID= get_service_plan('create qualityinspector')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = QualityInspectorForm()
+        # if request.method == "POST":
+        #     form = QualityInspectorForm(request.POST,user_choice=user_records,project_choice=project_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create qualityinspector')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/qualityinspector')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/qualityinspector')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'qualityinspector.html',context)
     except Exception as error:
@@ -16931,81 +16933,82 @@ def risk_delete(request,pk):
        
 def safetyofficer_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            user_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     user_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view project')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view project')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            project_records = response['data']
-        else:
-            print('Data not found in response')
-        form=SafetyOfficerForm(user_choice=user_records,project_choice=project_records)
-        MSID= get_service_plan('view safetyofficer')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     project_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=SafetyOfficerForm(user_choice=user_records,project_choice=project_records)
+        # MSID= get_service_plan('view safetyofficer')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = SafetyOfficerForm(request.POST,user_choice=user_records,project_choice=project_records)
-            if form.is_valid():
-                MSID= get_service_plan('create safetyofficer')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = SafetyOfficerForm()
+        # if request.method == "POST":
+        #     form = SafetyOfficerForm(request.POST,user_choice=user_records,project_choice=project_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create safetyofficer')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/safetyofficer')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/safetyofficer')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'safetyofficer.html',context)
     except Exception as error:
@@ -24055,64 +24058,65 @@ def changeorder_delete(request,pk):
        
 def contractcloseout_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            contract_records = response['data']
-        else:
-            print('Data not found in response')
-        form=ContractCloseoutForm(contract_choice=contract_records)
-        MSID= get_service_plan('view contractcloseout')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     contract_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=ContractCloseoutForm(contract_choice=contract_records)
+        # MSID= get_service_plan('view contractcloseout')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = ContractCloseoutForm(request.POST,contract_choice=contract_records)
-            if form.is_valid():
-                MSID= get_service_plan('create contractcloseout')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['closeout_date'] = cleaned_data['closeout_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = ContractCloseoutForm()
+        # if request.method == "POST":
+        #     form = ContractCloseoutForm(request.POST,contract_choice=contract_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create contractcloseout')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['closeout_date'] = cleaned_data['closeout_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/contractcloseout')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/contractcloseout')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'contractcloseout.html',context)
     except Exception as error:
@@ -24703,64 +24707,65 @@ def contractmilestone_delete(request,pk):
        
 def legalreview_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            contract_records = response['data']
-        else:
-            print('Data not found in response')
-        form=LegalReviewForm(contract_choice=contract_records)
-        MSID= get_service_plan('view legalreview')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     contract_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=LegalReviewForm(contract_choice=contract_records)
+        # MSID= get_service_plan('view legalreview')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = LegalReviewForm(request.POST,contract_choice=contract_records)
-            if form.is_valid():
-                MSID= get_service_plan('create legalreview')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['review_date'] = cleaned_data['review_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form=LegalReviewForm()
+        # if request.method == "POST":
+        #     form = LegalReviewForm(request.POST,contract_choice=contract_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create legalreview')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['review_date'] = cleaned_data['review_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/legalreview')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/legalreview')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'legalreview.html',context)
     except Exception as error:
@@ -25385,82 +25390,83 @@ def correctiveaction_delete(request,pk):
        
 def investigation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            incident_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     incident_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view user')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view user')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            investigator_records = response['data']
-        else:
-            print('Data not found in response')
-        form=InvestigationForm(incident_choice=incident_records,investigator_choice=investigator_records)
-        MSID= get_service_plan('view investigation')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     investigator_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=InvestigationForm(incident_choice=incident_records,investigator_choice=investigator_records)
+        # MSID= get_service_plan('view investigation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = InvestigationForm(request.POST,incident_choice=incident_records,investigator_choice=investigator_records)
-            if form.is_valid():
-                MSID= get_service_plan('create investigation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['investigation_date'] = cleaned_data['investigation_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = InvestigationForm()
+        # if request.method == "POST":
+        #     form = InvestigationForm(request.POST,incident_choice=incident_records,investigator_choice=investigator_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create investigation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['investigation_date'] = cleaned_data['investigation_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/investigation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/investigation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'investigation.html',context)
     except Exception as error:
@@ -26140,178 +26146,179 @@ def scheduleadjustment_delete(request,pk):
         return render(request, "error.html", {"error": error}) 
        
 def task_create(request):
-    try:
-        token = request.session['user_token']
+    # try:
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view milestone')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view milestone')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     milestone_records = response['data']
+        # else:
+        #     print('Data not found in response')
+       
+        # MSID = get_service_plan('view taskdurationestimation')
+        # if MSID is None:
+        #     print('MSID not found')
+
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
+
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
         # Check if the response contains data
-        if 'data' in response:
-            milestone_records = response['data']
-        else:
-            print('Data not found in response')
+        # if 'data' in response:
+        #     duration_estimation_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view taskdurationestimation')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view taskpriority')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            duration_estimation_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     priority_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view taskpriority')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view taskcategory')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            priority_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     category_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view taskcategory')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view team')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            category_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     assigned_team_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view team')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            assigned_team_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     assigned_individuals_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view individual')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            assigned_individuals_records = response['data']
-        else:
-            print('Data not found in response')
-       
-        MSID = get_service_plan('view individual')
-        if MSID is None:
-            print('MSID not found')
-
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
-
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
-
-        # Check if the response contains data
-        if 'data' in response:
-            task_owner_records = response['data']
-        else:
-            print('Data not found in response')
-        form=TaskForm(milestone_choice=milestone_records,duration_estimation_choice=duration_estimation_records,priority_choice=priority_records,category_choice=category_records,assigned_team_choice=assigned_team_records,assigned_individuals_choice=assigned_individuals_records,task_owner_choice=task_owner_records)
-        MSID= get_service_plan('view task')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     task_owner_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=TaskForm(milestone_choice=milestone_records,duration_estimation_choice=duration_estimation_records,priority_choice=priority_records,category_choice=category_records,assigned_team_choice=assigned_team_records,assigned_individuals_choice=assigned_individuals_records,task_owner_choice=task_owner_records)
+        # MSID= get_service_plan('view task')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = TaskForm(request.POST,milestone_choice=milestone_records,duration_estimation_choice=duration_estimation_records,priority_choice=priority_records,category_choice=category_records,assigned_team_choice=assigned_team_records,assigned_individuals_choice=assigned_individuals_records,task_owner_choice=task_owner_records)
-            if form.is_valid():
-                MSID= get_service_plan('create task')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['start_date'] = cleaned_data['start_date'].strftime('%Y-%m-%d')
-                cleaned_data['end_date'] = cleaned_data['end_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = TaskForm()
+        # if request.method == "POST":
+        #     form = TaskForm(request.POST,milestone_choice=milestone_records,duration_estimation_choice=duration_estimation_records,priority_choice=priority_records,category_choice=category_records,assigned_team_choice=assigned_team_records,assigned_individuals_choice=assigned_individuals_records,task_owner_choice=task_owner_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create task')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['start_date'] = cleaned_data['start_date'].strftime('%Y-%m-%d')
+        #         cleaned_data['end_date'] = cleaned_data['end_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/task')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/task')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'task.html',context)
-    except Exception as error:
-        return render(request, "error.html", {"error": error})    
+    # except Exception as error:
+    #     return render(request, "error.html", {"error": error})    
 
 def task_view(request,pk):
     try:
@@ -27545,81 +27552,82 @@ def mitigationstrategy_delete(request,pk):
        
 def riskassessment_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view project')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view project')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            project_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     project_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            risk_records = response['data']
-        else:
-            print('Data not found in response')
-        form=RiskAssessmentForm(project_choice=project_records,risk_choice=risk_records)
-        MSID= get_service_plan('view riskassessment')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     risk_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=RiskAssessmentForm(project_choice=project_records,risk_choice=risk_records)
+        # MSID= get_service_plan('view riskassessment')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = RiskAssessmentForm(request.POST,project_choice=project_records,risk_choice=risk_records)
-            if form.is_valid():
-                MSID= get_service_plan('create riskassessment')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = RiskAssessmentForm()
+        # if request.method == "POST":
+        #     form = RiskAssessmentForm(request.POST,project_choice=project_records,risk_choice=risk_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create riskassessment')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/riskassessment')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/riskassessment')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'riskassessment.html',context)
     except Exception as error:
@@ -29663,63 +29671,64 @@ def finalvendorselection_delete(request,pk):
        
 def financialevaluation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            proposal_records = response['data']
-        else:
-            print('Data not found in response')
-        form=FinancialEvaluationForm(proposal_choice=proposal_records)
-        MSID= get_service_plan('view financialevaluation')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     proposal_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=FinancialEvaluationForm(proposal_choice=proposal_records)
+        # MSID= get_service_plan('view financialevaluation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = FinancialEvaluationForm(request.POST,proposal_choice=proposal_records)
-            if form.is_valid():
-                MSID= get_service_plan('create financialevaluation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = FinancialEvaluationForm()
+        # if request.method == "POST":
+        #     form = FinancialEvaluationForm(request.POST,proposal_choice=proposal_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create financialevaluation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/financialevaluation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/financialevaluation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'financialevaluation.html',context)
     except Exception as error:
@@ -30163,63 +30172,64 @@ def negotiationstakeholder_delete(request,pk):
        
 def negotiationsummary_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            vendor_proposal_records = response['data']
-        else:
-            print('Data not found in response')
-        form=NegotiationSummaryForm(vendor_proposal_choice=vendor_proposal_records)
-        MSID= get_service_plan('view negotiationsummary')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     vendor_proposal_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=NegotiationSummaryForm(vendor_proposal_choice=vendor_proposal_records)
+        # MSID= get_service_plan('view negotiationsummary')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = NegotiationSummaryForm(request.POST,vendor_proposal_choice=vendor_proposal_records)
-            if form.is_valid():
-                MSID= get_service_plan('create negotiationsummary')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = NegotiationSummaryForm()
+        # if request.method == "POST":
+        #     form = NegotiationSummaryForm(request.POST,vendor_proposal_choice=vendor_proposal_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create negotiationsummary')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/negotiationsummary')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/negotiationsummary')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'negotiationsummary.html',context)
     except Exception as error:
@@ -30805,63 +30815,64 @@ def proposalcompliance_delete(request,pk):
        
 def proposalevaluation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            proposal_records = response['data']
-        else:
-            print('Data not found in response')
-        form=ProposalEvaluationForm(proposal_choice=proposal_records)
-        MSID= get_service_plan('view proposalevaluation')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     proposal_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=ProposalEvaluationForm(proposal_choice=proposal_records)
+        # MSID= get_service_plan('view proposalevaluation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = ProposalEvaluationForm(request.POST,proposal_choice=proposal_records)
-            if form.is_valid():
-                MSID= get_service_plan('create proposalevaluation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form=ProposalEvaluationForm()
+        # if request.method == "POST":
+        #     form = ProposalEvaluationForm(request.POST,proposal_choice=proposal_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create proposalevaluation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/proposalevaluation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/proposalevaluation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'proposalevaluation.html',context)
     except Exception as error:
@@ -31269,63 +31280,66 @@ def proposalscoring_delete(request,pk):
        
 def riskevaluation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            proposal_records = response['data']
-        else:
-            print('Data not found in response')
-        form=RiskEvaluationForm(proposal_choice=proposal_records)
-        MSID= get_service_plan('view riskevaluation')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     proposal_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=RiskEvaluationForm(proposal_choice=proposal_records)
+        # MSID= get_service_plan('view riskevaluation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
 
-        if request.method == "POST":
-            form = RiskEvaluationForm(request.POST,proposal_choice=proposal_records)
-            if form.is_valid():
-                MSID= get_service_plan('create riskevaluation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        form=RiskEvaluationForm()
+
+        # if request.method == "POST":
+        #     form = RiskEvaluationForm(request.POST,proposal_choice=proposal_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create riskevaluation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/riskevaluation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/riskevaluation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'riskevaluation.html',context)
     except Exception as error:
@@ -31483,63 +31497,64 @@ def riskevaluation_delete(request,pk):
        
 def technicalevaluation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            proposal_records = response['data']
-        else:
-            print('Data not found in response')
-        form=TechnicalEvaluationForm(proposal_choice=proposal_records)
-        MSID= get_service_plan('view technicalevaluation')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     proposal_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=TechnicalEvaluationForm(proposal_choice=proposal_records)
+        # MSID= get_service_plan('view technicalevaluation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = TechnicalEvaluationForm(request.POST,proposal_choice=proposal_records)
-            if form.is_valid():
-                MSID= get_service_plan('create technicalevaluation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = TechnicalEvaluationForm()
+        # if request.method == "POST":
+        #     form = TechnicalEvaluationForm(request.POST,proposal_choice=proposal_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create technicalevaluation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/technicalevaluation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/technicalevaluation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'technicalevaluation.html',context)
     except Exception as error:
@@ -32161,64 +32176,65 @@ def auditlog_delete(request,pk):
        
 def changeorderapproval_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            change_order_records = response['data']
-        else:
-            print('Data not found in response')
-        form=ChangeOrderApprovalForm(change_order_choice=change_order_records)
-        MSID= get_service_plan('view changeorderapproval')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     change_order_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=ChangeOrderApprovalForm(change_order_choice=change_order_records)
+        # MSID= get_service_plan('view changeorderapproval')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = ChangeOrderApprovalForm(request.POST,change_order_choice=change_order_records)
-            if form.is_valid():
-                MSID= get_service_plan('create changeorderapproval')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['approval_date'] = cleaned_data['approval_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = ChangeOrderApprovalForm()
+        # if request.method == "POST":
+        #     form = ChangeOrderApprovalForm(request.POST,change_order_choice=change_order_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create changeorderapproval')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['approval_date'] = cleaned_data['approval_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/changeorderapproval')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/changeorderapproval')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'changeorderapproval.html',context)
     except Exception as error:
@@ -32377,65 +32393,66 @@ def changeorderapproval_delete(request,pk):
        
 def changeorderimplementation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            change_order_records = response['data']
-        else:
-            print('Data not found in response')
-        form=ChangeOrderImplementationForm(change_order_choice=change_order_records)
-        MSID= get_service_plan('view changeorderimplementation')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     change_order_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=ChangeOrderImplementationForm(change_order_choice=change_order_records)
+        # MSID= get_service_plan('view changeorderimplementation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = ChangeOrderImplementationForm(request.POST,change_order_choice=change_order_records)
-            if form.is_valid():
-                MSID= get_service_plan('create changeorderimplementation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['implementation_date'] = cleaned_data['implementation_date'].strftime('%Y-%m-%d')
-                cleaned_data['new_deadline'] = cleaned_data['new_deadline'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = ChangeOrderImplementationForm()
+        # if request.method == "POST":
+        #     form = ChangeOrderImplementationForm(request.POST,change_order_choice=change_order_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create changeorderimplementation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['implementation_date'] = cleaned_data['implementation_date'].strftime('%Y-%m-%d')
+        #         cleaned_data['new_deadline'] = cleaned_data['new_deadline'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/changeorderimplementation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/changeorderimplementation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'changeorderimplementation.html',context)
     except Exception as error:
@@ -33527,82 +33544,83 @@ def criticalpath_delete(request,pk):
        
 def dailyprogressreport_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view task')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view task')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            task_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     task_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view user')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view user')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            reported_by_records = response['data']
-        else:
-            print('Data not found in response')
-        form=DailyProgressReportForm(task_choice=task_records,reported_by_choice=reported_by_records)
-        MSID= get_service_plan('view dailyprogressreport')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     reported_by_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=DailyProgressReportForm(task_choice=task_records,reported_by_choice=reported_by_records)
+        # MSID= get_service_plan('view dailyprogressreport')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = DailyProgressReportForm(request.POST,task_choice=task_records,reported_by_choice=reported_by_records)
-            if form.is_valid():
-                MSID= get_service_plan('create dailyprogressreport')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['report_date'] = cleaned_data['report_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = DailyProgressReportForm()
+        # if request.method == "POST":
+        #     form = DailyProgressReportForm(request.POST,task_choice=task_records,reported_by_choice=reported_by_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create dailyprogressreport')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['report_date'] = cleaned_data['report_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/dailyprogressreport')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/dailyprogressreport')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'dailyprogressreport.html',context)
     except Exception as error:
@@ -34065,100 +34083,101 @@ def delay_delete(request,pk):
        
 def performancereport_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view subcontractor')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view subcontractor')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            subcontractor_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     subcontractor_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view project')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view project')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            project_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     project_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view task')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view task')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            task_records = response['data']
-        else:
-            print('Data not found in response')
-        form=PerformanceReportForm(subcontractor_choice=subcontractor_records,project_choice=project_records,task_choice=task_records)
-        MSID= get_service_plan('view performancereport')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     task_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=PerformanceReportForm(subcontractor_choice=subcontractor_records,project_choice=project_records,task_choice=task_records)
+        # MSID= get_service_plan('view performancereport')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = PerformanceReportForm(request.POST,subcontractor_choice=subcontractor_records,project_choice=project_records,task_choice=task_records)
-            if form.is_valid():
-                MSID= get_service_plan('create performancereport')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['report_date'] = cleaned_data['report_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = PerformanceReportForm()
+        # if request.method == "POST":
+        #     form = PerformanceReportForm(request.POST,subcontractor_choice=subcontractor_records,project_choice=project_records,task_choice=task_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create performancereport')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['report_date'] = cleaned_data['report_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/performancereport')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/performancereport')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'performancereport.html',context)
     except Exception as error:
@@ -34353,63 +34372,64 @@ def performancereport_delete(request,pk):
        
 def photodocumentation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view task')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view task')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            task_records = response['data']
-        else:
-            print('Data not found in response')
-        form=PhotoDocumentationForm(task_choice=task_records)
-        MSID= get_service_plan('view photodocumentation')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     task_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=PhotoDocumentationForm(task_choice=task_records)
+        # MSID= get_service_plan('view photodocumentation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = PhotoDocumentationForm(request.POST,task_choice=task_records)
-            if form.is_valid():
-                MSID= get_service_plan('create photodocumentation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = PhotoDocumentationForm()
+        # if request.method == "POST":
+        #     form = PhotoDocumentationForm(request.POST,task_choice=task_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create photodocumentation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/photodocumentation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/photodocumentation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'photodocumentation.html',context)
     except Exception as error:
@@ -35295,81 +35315,82 @@ def resourceallocation_delete(request,pk):
        
 def taskdependency_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view task')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view task')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            task_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     task_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view task')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view task')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            dependent_task_records = response['data']
-        else:
-            print('Data not found in response')
-        form=TaskDependencyForm(task_choice=task_records,dependent_task_choice=dependent_task_records)
-        MSID= get_service_plan('view taskdependency')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     dependent_task_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=TaskDependencyForm(task_choice=task_records,dependent_task_choice=dependent_task_records)
+        # MSID= get_service_plan('view taskdependency')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = TaskDependencyForm(request.POST,task_choice=task_records,dependent_task_choice=dependent_task_records)
-            if form.is_valid():
-                MSID= get_service_plan('create taskdependency')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = TaskDependencyForm()
+        # if request.method == "POST":
+        #     form = TaskDependencyForm(request.POST,task_choice=task_records,dependent_task_choice=dependent_task_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create taskdependency')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/taskdependency')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/taskdependency')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'taskdependency.html',context)
     except Exception as error:
@@ -35545,81 +35566,84 @@ def taskdependency_delete(request,pk):
        
 def taskresourceallocation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view task')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view task')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     task_records = response['data']
+        # else:
+        #     print('Data not found in response')
+       
+        # MSID = get_service_plan('view resource')
+        # if MSID is None:
+        #     print('MSID not found')
+
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
+
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+
+        form=TaskResourceAllocationForm()
 
         # Check if the response contains data
-        if 'data' in response:
-            task_records = response['data']
-        else:
-            print('Data not found in response')
-       
-        MSID = get_service_plan('view resource')
-        if MSID is None:
-            print('MSID not found')
-
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
-
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
-
-        # Check if the response contains data
-        if 'data' in response:
-            resource_records = response['data']
-        else:
-            print('Data not found in response')
-        form=TaskResourceAllocationForm(task_choice=task_records,resource_choice=resource_records)
-        MSID= get_service_plan('view taskresourceallocation')
-        if MSID is None:
-            print('MISID not found')
+        # if 'data' in response:
+        #     resource_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=TaskResourceAllocationForm(task_choice=task_records,resource_choice=resource_records)
+        # MSID= get_service_plan('view taskresourceallocation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
 
-        if request.method == "POST":
-            form = TaskResourceAllocationForm(request.POST,task_choice=task_records,resource_choice=resource_records)
-            if form.is_valid():
-                MSID= get_service_plan('create taskresourceallocation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # if request.method == "POST":
+        #     form = TaskResourceAllocationForm(request.POST,task_choice=task_records,resource_choice=resource_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create taskresourceallocation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/taskresourceallocation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/taskresourceallocation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'taskresourceallocation.html',context)
     except Exception as error:
@@ -35794,7 +35818,7 @@ def taskresourceallocation_delete(request,pk):
         return render(request, "error.html", {"error": error}) 
        
 def taskschedule_create(request):
-    try:
+    # try:
         token = request.session['user_token']
        
         MSID = get_service_plan('view task')
@@ -35856,8 +35880,8 @@ def taskschedule_create(request):
             'form':form,'records':master_view,"save":True
         }
         return render(request, 'taskschedule.html',context)
-    except Exception as error:
-        return render(request, "error.html", {"error": error})    
+    # except Exception as error:
+    #     return render(request, "error.html", {"error": error})    
 
 def taskschedule_view(request,pk):
     try:
@@ -36013,64 +36037,65 @@ def taskschedule_delete(request,pk):
        
 def taskstatus_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view task')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view task')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            task_records = response['data']
-        else:
-            print('Data not found in response')
-        form=TaskStatusForm(task_choice=task_records)
-        MSID= get_service_plan('view taskstatus')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     task_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=TaskStatusForm(task_choice=task_records)
+        # MSID= get_service_plan('view taskstatus')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = TaskStatusForm(request.POST,task_choice=task_records)
-            if form.is_valid():
-                MSID= get_service_plan('create taskstatus')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['update_date'] = cleaned_data['update_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = TaskStatusForm()
+        # if request.method == "POST":
+        #     form = TaskStatusForm(request.POST,task_choice=task_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create taskstatus')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['update_date'] = cleaned_data['update_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/taskstatus')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/taskstatus')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'taskstatus.html',context)
     except Exception as error:
@@ -36517,82 +36542,83 @@ def timesheet_delete(request,pk):
        
 def timetracking_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view task')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view task')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            task_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     task_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view user')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view user')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            user_records = response['data']
-        else:
-            print('Data not found in response')
-        form=TimeTrackingForm(task_choice=task_records,user_choice=user_records)
-        MSID= get_service_plan('view timetracking')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     user_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=TimeTrackingForm(task_choice=task_records,user_choice=user_records)
+        # MSID= get_service_plan('view timetracking')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = TimeTrackingForm(request.POST,task_choice=task_records,user_choice=user_records)
-            if form.is_valid():
-                MSID= get_service_plan('create timetracking')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['date'] = cleaned_data['date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = TimeTrackingForm()
+        # if request.method == "POST":
+        #     form = TimeTrackingForm(request.POST,task_choice=task_records,user_choice=user_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create timetracking')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['date'] = cleaned_data['date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/timetracking')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/timetracking')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,"timetracking":"active"
+            # 'records':master_view,"save":True
         }
         return render(request, 'timetracking.html',context)
     except Exception as error:
@@ -37923,82 +37949,83 @@ def tendersubmission_delete(request,pk):
        
 def contractaward_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view none')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view none')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            contract_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     contract_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view finalvendorselection')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view finalvendorselection')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            selected_vendor_records = response['data']
-        else:
-            print('Data not found in response')
-        form=ContractAwardForm(contract_choice=contract_records,selected_vendor_choice=selected_vendor_records)
-        MSID= get_service_plan('view contractaward')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     selected_vendor_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=ContractAwardForm(contract_choice=contract_records,selected_vendor_choice=selected_vendor_records)
+        # MSID= get_service_plan('view contractaward')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = ContractAwardForm(request.POST,contract_choice=contract_records,selected_vendor_choice=selected_vendor_records)
-            if form.is_valid():
-                MSID= get_service_plan('create contractaward')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
-                cleaned_data['award_date'] = cleaned_data['award_date'].strftime('%Y-%m-%d')
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = ContractAwardForm()
+        # if request.method == "POST":
+        #     form = ContractAwardForm(request.POST,contract_choice=contract_records,selected_vendor_choice=selected_vendor_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create contractaward')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['award_date'] = cleaned_data['award_date'].strftime('%Y-%m-%d')
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/contractaward')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/contractaward')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'contractaward.html',context)
     except Exception as error:
@@ -38175,81 +38202,82 @@ def contractaward_delete(request,pk):
        
 def stakeholderevaluation_create(request):
     try:
-        token = request.session['user_token']
+        # token = request.session['user_token']
        
-        MSID = get_service_plan('view proposalevaluation')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view proposalevaluation')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            evaluation_records = response['data']
-        else:
-            print('Data not found in response')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     evaluation_records = response['data']
+        # else:
+        #     print('Data not found in response')
        
-        MSID = get_service_plan('view stakeholder')
-        if MSID is None:
-            print('MSID not found')
+        # MSID = get_service_plan('view stakeholder')
+        # if MSID is None:
+        #     print('MSID not found')
 
-        data = {
-            'ms_id': MSID,
-            'ms_payload': {}
-        }
+        # data = {
+        #     'ms_id': MSID,
+        #     'ms_payload': {}
+        # }
 
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL, ENDPOINT, json_data, token)
 
-        # Check if the response contains data
-        if 'data' in response:
-            stakeholder_records = response['data']
-        else:
-            print('Data not found in response')
-        form=StakeholderEvaluationForm(evaluation_choice=evaluation_records,stakeholder_choice=stakeholder_records)
-        MSID= get_service_plan('view stakeholderevaluation')
-        if MSID is None:
-            print('MISID not found')
+        # # Check if the response contains data
+        # if 'data' in response:
+        #     stakeholder_records = response['data']
+        # else:
+        #     print('Data not found in response')
+        # form=StakeholderEvaluationForm(evaluation_choice=evaluation_records,stakeholder_choice=stakeholder_records)
+        # MSID= get_service_plan('view stakeholderevaluation')
+        # if MSID is None:
+        #     print('MISID not found')
    
-        data={
-            'ms_id':MSID,
-            'ms_payload':{}
-        }
-        json_data = json.dumps(data)
-        response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-        master_view = response['data']
-
-        if request.method == "POST":
-            form = StakeholderEvaluationForm(request.POST,evaluation_choice=evaluation_records,stakeholder_choice=stakeholder_records)
-            if form.is_valid():
-                MSID= get_service_plan('create stakeholderevaluation')
-                if MSID is None:
-                    print('MISID not found')      
-                cleaned_data = form.cleaned_data
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+        form = StakeholderEvaluationForm()
+        # if request.method == "POST":
+        #     form = StakeholderEvaluationForm(request.POST,evaluation_choice=evaluation_records,stakeholder_choice=stakeholder_records)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create stakeholderevaluation')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
                      
-                data={
-                    'ms_id':MSID,
-                    'ms_payload':cleaned_data
-                } 
-                json_data = json.dumps(data)
-                response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
-                print('response',response)
-                if response['status_code'] ==  0:                  
-                    messages.info(request, "Well Done..! Application Submitted..")
-                    return redirect('/stakeholderevaluation')
-                else:
-                    messages.info(request, "Oops..! Application Failed to Submitted..")
-            else:
-                print('errorss',form.errors) 
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/stakeholderevaluation')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,
+            # 'records':master_view,"save":True
         }
         return render(request, 'stakeholderevaluation.html',context)
     except Exception as error:
@@ -40226,4 +40254,16 @@ def tenderproposalmanagement_delete(request,pk):
             messages.info(request, "Oops..! Application Failed to Submitted..")
     except Exception as error:
         return render(request, "error.html", {"error": error}) 
+    
+    
+def master_base(request):
+    try:
+        context={   
+            "tenderproposalmanagement_view_active":"active",
+           
+        }
+        return render(request, 'base_copy.html',context)   
+   
+    except Exception as error:
+        return render(request, "error.html", {"error": error})     
        

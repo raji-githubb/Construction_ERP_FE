@@ -1,5 +1,5 @@
 
-    {% extends 'base.html' %} 
+    {% extends 'base_copy.html' %} 
  {% block body_block %}
         <div class="col-md-12">
     <div class="card p-3" >
@@ -45,8 +45,8 @@
                 <tr>
 <td>{{data.name}}</td>
                     <td>
-                        <a href="{% url 'equipmentcategory_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
-                        <a href="{% url 'equipmentcategory_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                        <a href=""><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href=""><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
                     </td>
                 </tr>
                 {% endfor %}

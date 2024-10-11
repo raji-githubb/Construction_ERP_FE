@@ -1913,3 +1913,7 @@ class TenderProposalManagementForm(forms.Form):
 	response_deadline = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
 	response_tracking = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
 	issued_by = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+
+
+class TaskDurationEstimationForm(forms.Form):
+	estimated_duration = forms.CharField(required=False, widget=forms.Textarea(attrs={"class": "form-control"}))

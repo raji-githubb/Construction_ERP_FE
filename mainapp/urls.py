@@ -902,4 +902,6 @@ urlpatterns = [
     path('tenderproposalmanagement-view/<pk>/', tenderproposalmanagement_view, name='tenderproposalmanagement_view'),
     path('tenderproposalmanagement-edit/<pk>/', tenderproposalmanagement_edit, name='tenderproposalmanagement_edit'),
     path('tenderproposalmanagement-delete/<pk>/', tenderproposalmanagement_delete, name='tenderproposalmanagement_delete'),
+    path('masters-base', master_base, name='master_base'),
+    
 ]
