@@ -62,7 +62,7 @@ def login(request):
             username = request.POST.get('username')
             password = request.POST.get('password')
             payload = {        
-                "username" : username,
+                "email" : username,
                 "password" : password
             }
             # Convert payload to JSON format

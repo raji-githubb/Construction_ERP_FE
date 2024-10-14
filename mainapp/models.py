@@ -6,3 +6,8 @@ class MS_ServicePlan(models.Model):
     serviceplan_id = models.CharField(max_length=50,blank=True,null=True)
     channel_id = models.CharField(max_length=50,blank=True,null=True)
     description =models.CharField(max_length=50)
+    
+    
+    
+
+    
