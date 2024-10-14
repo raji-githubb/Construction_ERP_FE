@@ -22,6 +22,7 @@
 	<link id="theme-style" rel="stylesheet" href="{% static 'assets/css/portal.css' %}">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 	<style>
 		.cust{
 		 padding: 2px !important;
@@ -269,28 +270,32 @@
 
 
 <li class="nav-item has-submenu">
-    <a class="nav-link " href="{% url 'master_base' %}" 
+    <a class="nav-link" href="{% url 'master_base' %}" 
        aria-expanded="false" aria-controls="submenu-3177">
-       
-        <span class="">Master </span>
-     
-    </a>   
-   
+        
+        <span class="nav-link-icon">
+            <i class="bi bi-gear"></i> <!-- Master Icon -->
+        </span>
+        <span class="">Master</span>
+    </a>
 </li>
 
 <li class="nav-item has-submenu {% if 'milestone' in request.path or 'project' in request.path or 'task' in request.path %}active{% endif %}">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3177" aria-expanded="{% if 'milestone' in request.path or 'project' in request.path or 'task' in request.path %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3177">
-        
-        <span class="nav-link-text">Project</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
+    data-bs-target="#submenu-3177" aria-expanded="{% if 'milestone' in request.path or 'project' in request.path or 'task' in request.path %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3177">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-briefcase"></i> <!-- Project Icon -->
+    </span>
+    <span class="nav-link-text">Project</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
     </a>
     <div id="submenu-3177" class="collapse submenu submenu-3177 
         {% if 'milestone' in request.path or 'project' in request.path or 'task' in request.path or 'taskstatus' in request.path or 'timetracking' in request.path or 'taskresourceallocation' in request.path or 'finalclientsignoff' in request.path or 'projectperformancereview' in request.path %}show{% endif %}" 
@@ -347,17 +352,20 @@
 
 <li class="nav-item has-submenu {% if 'bid' in request.path or 'procurementneed' in request.path or 'documentedrequirement' in request.path or 'stakeholderinput' in request.path or 'tenderdocument' in request.path or 'tenderscope' in request.path or 'tendersubmission' in request.path or 'clarificationresponse' in request.path or 'vendorproposal' in request.path or 'proposalcompliance' in request.path or 'proposalscoring' in request.path or 'stakeholderevaluation' in request.path or 'negotiationterm' in request.path or 'negotiationstakeholder' in request.path or 'finalvendorselection' in request.path or 'contract' in request.path or 'contractexecution' in request.path or 'contractawardexecution' in request.path or 'purchaseorder' in request.path or 'bidsubmission' in request.path or 'postsubmissionfollowup' in request.path or 'negotiationandaward' in request.path or 'bidnobiddecision' in request.path or 'submissionfollowup' in request.path or 'contractaward' in request.path %}active{% endif %}">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3198" aria-expanded="{% if 'bid' in request.path or 'procurementneed' in request.path or 'documentedrequirement' in request.path or 'stakeholderinput' in request.path or 'tenderdocument' in request.path or 'tenderscope' in request.path or 'tendersubmission' in request.path or 'clarificationresponse' in request.path or 'vendorproposal' in request.path or 'proposalcompliance' in request.path or 'proposalscoring' in request.path or 'stakeholderevaluation' in request.path or 'negotiationterm' in request.path or 'negotiationstakeholder' in request.path or 'finalvendorselection' in request.path or 'contract' in request.path or 'contractexecution' in request.path or 'contractawardexecution' in request.path or 'purchaseorder' in request.path or 'bidsubmission' in request.path or 'postsubmissionfollowup' in request.path or 'negotiationandaward' in request.path or 'bidnobiddecision' in request.path or 'submissionfollowup' in request.path or 'contractaward' in request.path %}true{% else %}false{% endif %}" aria-controls="submenu-3198">
-        
-        <span class="nav-link-text">Bid</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3198" aria-expanded="{% if 'bid' in request.path or 'procurementneed' in request.path or 'documentedrequirement' in request.path or 'stakeholderinput' in request.path or 'tenderdocument' in request.path or 'tenderscope' in request.path or 'tendersubmission' in request.path or 'clarificationresponse' in request.path or 'vendorproposal' in request.path or 'proposalcompliance' in request.path or 'proposalscoring' in request.path or 'stakeholderevaluation' in request.path or 'negotiationterm' in request.path or 'negotiationstakeholder' in request.path or 'finalvendorselection' in request.path or 'contract' in request.path or 'contractexecution' in request.path or 'contractawardexecution' in request.path or 'purchaseorder' in request.path or 'bidsubmission' in request.path or 'postsubmissionfollowup' in request.path or 'negotiationandaward' in request.path or 'bidnobiddecision' in request.path or 'submissionfollowup' in request.path or 'contractaward' in request.path %}true{% else %}false{% endif %}" aria-controls="submenu-3198">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-money-bill"></i> <!-- Bid Icon -->
+    </span>
+    <span class="nav-link-text">Bid</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3198" class="collapse submenu submenu-3198 
         {% if 'bid' in request.path or 'procurementneed' in request.path or 'documentedrequirement' in request.path or 'stakeholderinput' in request.path or 'tenderdocument' in request.path or 'tenderscope' in request.path or 'tendersubmission' in request.path or 'clarificationresponse' in request.path or 'vendorproposal' in request.path or 'proposalcompliance' in request.path or 'proposalscoring' in request.path or 'stakeholderevaluation' in request.path or 'negotiationterm' in request.path or 'negotiationstakeholder' in request.path or 'finalvendorselection' in request.path or 'contract' in request.path or 'contractexecution' in request.path or 'contractawardexecution' in request.path or 'purchaseorder' in request.path or 'bidsubmission' in request.path or 'postsubmissionfollowup' in request.path or 'negotiationandaward' in request.path or 'bidnobiddecision' in request.path or 'submissionfollowup' in request.path or 'contractaward' in request.path %}show{% endif %}" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
@@ -725,18 +733,21 @@
 <!-- #================================================Start sub Contractor Management==================================== -->
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3236" aria-expanded="{% if request.resolver_match.url_name in 'subcontractor subcontractorcontract expertise bid task performancereport changeorder projectcloseout' %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3236">
-       
-        <span class="nav-link-text">Sub Contractor Management</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3236" aria-expanded="{% if request.resolver_match.url_name in 'subcontractor subcontractorcontract expertise bid task performancereport changeorder projectcloseout' %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3236">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-user-tie"></i> <!-- Sub Contractor Icon -->
+    </span>
+    <span class="nav-link-text">Sub Contractor Management</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3236" class="collapse submenu submenu-3236 {% if request.resolver_match.url_name in ' subcontractorcontractes expertisees bides task performancereport changeorder projectcloseout' %}show{% endif %}" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
             <!-- <li class="submenu-item {% if request.resolver_match.url_name == 'subcontractor' %}active{% endif %}">
@@ -768,18 +779,21 @@
 </li>
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3237" aria-expanded="{% if request.resolver_match.url_name in 'resourceavailability teammember task dailyprogressreport photodocumentation issue message notification milestone material stockadjustment stockreplenishmentrequest' %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3237">
-       
-        <span class="nav-link-text">Field Management</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3237" aria-expanded="{% if request.resolver_match.url_name in 'resourceavailability teammember task dailyprogressreport photodocumentation issue message notification milestone material stockadjustment stockreplenishmentrequest' %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3237">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-clipboard-list"></i> <!-- Field Management Icon -->
+    </span>
+    <span class="nav-link-text">Field Management</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3237" class="collapse submenu submenu-3237 {% if request.resolver_match.url_name in 'resourceavailability teammember task dailyprogressreport photodocumentation issue message notification milestone material stockadjustment stockreplenishmentrequest' %}show{% endif %}" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
             <li class="submenu-item {% if request.resolver_match.url_name == 'resourceavailability' %}active{% endif %}">
@@ -823,18 +837,21 @@
 </li>
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3238" aria-expanded="{% if request.resolver_match.url_name in 'supplier warehouse itemcategory item stockentry requisition inventoryaudit equipmentcategory equipment equipmentassignment equipmentmaintenance equipmentaudit assetcategory asset assetmaintenance depreciation assetaudit' %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3238">
-       
-        <span class="nav-link-text">Inventory Management</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3238" aria-expanded="{% if request.resolver_match.url_name in 'supplier warehouse itemcategory item stockentry requisition inventoryaudit equipmentcategory equipment equipmentassignment equipmentmaintenance equipmentaudit assetcategory asset assetmaintenance depreciation assetaudit' %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3238">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-boxes"></i> <!-- Inventory Management Icon -->
+    </span>
+    <span class="nav-link-text">Inventory Management</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3238" class="collapse submenu submenu-3238 {% if request.resolver_match.url_name in 'supplier warehouse itemcategory item stockentry requisition inventoryaudit equipmentcategory equipment equipmentassignment equipmentmaintenance equipmentaudit assetcategory asset assetmaintenance depreciation assetaudit' %}show{% endif %}" data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
             <!-- <li class="submenu-item {% if request.resolver_match.url_name == 'supplier' %}active{% endif %}">
@@ -893,18 +910,21 @@
 </li>
 <li class="nav-item has-submenu {% if 'budget' in request.path or 'financialtransaction' in request.path or 'expense' in request.path or 'revenue' in request.path or 'invoice' in request.path or 'payment' in request.path or 'milestonebilling' in request.path %}active{% endif %}">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3239" aria-expanded="{% if 'budget' in request.path or 'financialtransaction' in request.path or 'expense' in request.path or 'revenue' in request.path or 'invoice' in request.path or 'payment' in request.path or 'milestonebilling' in request.path %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3239">
-        
-        <span class="nav-link-text">Budget & Financial Management</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3239" aria-expanded="{% if 'budget' in request.path or 'financialtransaction' in request.path or 'expense' in request.path or 'revenue' in request.path or 'invoice' in request.path or 'payment' in request.path or 'milestonebilling' in request.path %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3239">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-dollar-sign"></i> <!-- Budget & Financial Management Icon -->
+    </span>
+    <span class="nav-link-text">Budget & Financial Management</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3239" class="collapse submenu submenu-3239 
         {% if 'budget' in request.path or 'financialtransaction' in request.path or 'expense' in request.path or 'revenue' in request.path or 'invoice' in request.path or 'payment' in request.path or 'milestonebilling' in request.path %}show{% endif %}" 
         data-bs-parent="#menu-accordion">
@@ -937,18 +957,21 @@
 
 <li class="nav-item has-submenu {% if 'risk' in request.path or 'riskcategory' in request.path or 'riskowner' in request.path or 'riskassessment' in request.path or 'mitigationstrategy' in request.path or 'mitigationaction' in request.path or 'riskreview' in request.path %}active{% endif %}">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3242" aria-expanded="{% if 'risk' in request.path or 'riskcategory' in request.path or 'riskowner' in request.path or 'riskassessment' in request.path or 'mitigationstrategy' in request.path or 'mitigationaction' in request.path or 'riskreview' in request.path %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3242">
-       
-        <span class="nav-link-text">Risk Management</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3242" aria-expanded="{% if 'risk' in request.path or 'riskcategory' in request.path or 'riskowner' in request.path or 'riskassessment' in request.path or 'mitigationstrategy' in request.path or 'mitigationaction' in request.path or 'riskreview' in request.path %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3242">
+    
+    <span class="nav-link-icon">
+        <i class="bi bi-exclamation-triangle"></i> <!-- Risk Management Icon -->
+    </span>
+    <span class="nav-link-text">Risk Management</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3242" class="collapse submenu submenu-3242 
         {% if 'risk' in request.path or 'riskcategory' in request.path or 'riskowner' in request.path or 'riskassessment' in request.path or 'mitigationstrategy' in request.path or 'mitigationaction' in request.path or 'riskreview' in request.path %}show{% endif %}" 
         data-bs-parent="#menu-accordion">
@@ -981,18 +1004,21 @@
 
 <li class="nav-item has-submenu {% if 'safetyofficer' in request.path or 'qualityinspector' in request.path or 'safetyplan' in request.path or 'qualitycontrolplan' in request.path or 'legalrequirement' in request.path or 'riskassessment' in request.path or 'inspection' in request.path or 'compliancemonitor' in request.path or 'incidentreport' in request.path or 'investigation' in request.path or 'correctiveaction' in request.path or 'auditlog' in request.path or 'correctivepreventiveaction' in request.path or 'finalreview' in request.path or 'closeoutdocument' in request.path %}active{% endif %}">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3243" aria-expanded="{% if 'safetyofficer' in request.path or 'qualityinspector' in request.path or 'safetyplan' in request.path or 'qualitycontrolplan' in request.path or 'legalrequirement' in request.path or 'riskassessment' in request.path or 'inspection' in request.path or 'compliancemonitor' in request.path or 'incidentreport' in request.path or 'investigation' in request.path or 'correctiveaction' in request.path or 'auditlog' in request.path or 'correctivepreventiveaction' in request.path or 'finalreview' in request.path or 'closeoutdocument' in request.path %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3243">
-       
-        <span class="nav-link-text">Quality & Safety Management</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3243" aria-expanded="{% if 'safetyofficer' in request.path or 'qualityinspector' in request.path or 'safetyplan' in request.path or 'qualitycontrolplan' in request.path or 'legalrequirement' in request.path or 'riskassessment' in request.path or 'inspection' in request.path or 'compliancemonitor' in request.path or 'incidentreport' in request.path or 'investigation' in request.path or 'correctiveaction' in request.path or 'auditlog' in request.path or 'correctivepreventiveaction' in request.path or 'finalreview' in request.path or 'closeoutdocument' in request.path %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3243">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-shield-alt"></i> <!-- Quality & Safety Management Icon -->
+    </span>
+    <span class="nav-link-text">Quality & Safety Management</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3243" class="collapse submenu submenu-3243 
         {% if 'safetyofficer' in request.path or 'qualityinspector' in request.path or 'safetyplan' in request.path or 'qualitycontrolplan' in request.path or 'legalrequirement' in request.path or 'riskassessment' in request.path or 'inspection' in request.path or 'compliancemonitor' in request.path or 'incidentreport' in request.path or 'investigation' in request.path or 'correctiveaction' in request.path or 'auditlog' in request.path or 'correctivepreventiveaction' in request.path or 'finalreview' in request.path or 'closeoutdocument' in request.path %}show{% endif %}" 
         data-bs-parent="#menu-accordion">
@@ -1047,18 +1073,21 @@
 </li>
 <li class="nav-item has-submenu {% if 'contractor' in request.path or 'contract' in request.path or 'contractmilestone' in request.path or 'payment' in request.path or 'changeorder' in request.path or 'changeorderapproval' in request.path or 'changeorderimplementation' in request.path or 'contractcloseout' in request.path or 'document' in request.path or 'auditlog' in request.path %}active{% endif %}">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3244" aria-expanded="{% if 'contractor' in request.path or 'contract' in request.path or 'contractmilestone' in request.path or 'payment' in request.path or 'changeorder' in request.path or 'changeorderapproval' in request.path or 'changeorderimplementation' in request.path or 'contractcloseout' in request.path or 'document' in request.path or 'auditlog' in request.path %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3244">
-       
-        <span class="nav-link-text">Contract & Change Order Management</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3244" aria-expanded="{% if 'contractor' in request.path or 'contract' in request.path or 'contractmilestone' in request.path or 'payment' in request.path or 'changeorder' in request.path or 'changeorderapproval' in request.path or 'changeorderimplementation' in request.path or 'contractcloseout' in request.path or 'document' in request.path or 'auditlog' in request.path %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3244">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-file-contract"></i> <!-- Contract & Change Order Management Icon -->
+    </span>
+    <span class="nav-link-text">Contract & Change Order Management</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3244" class="collapse submenu submenu-3244 {% if 'contractor' in request.path or 'contract' in request.path or 'contractmilestone' in request.path or 'payment' in request.path or 'changeorder' in request.path or 'changeorderapproval' in request.path or 'changeorderimplementation' in request.path or 'contractcloseout' in request.path or 'document' in request.path or 'auditlog' in request.path %}show{% endif %}" 
         data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
@@ -1104,18 +1133,21 @@
 <!-- #================================================Start CRMt==================================== -->
 <li class="nav-item has-submenu {% if 'leadsource' in request.path or 'lead' in request.path or 'salesrepresentative' in request.path or 'clientinteractiontype' in request.path or 'clientinteraction' in request.path or 'salesstage' in request.path or 'opportunity' in request.path or 'proposal' in request.path or 'contract' in request.path or 'projectcommunication' in request.path or 'clientfollowup' in request.path or 'clientsatisfactionsurvey' in request.path %}active{% endif %}">
     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3154" aria-expanded="{% if 'leadsource' in request.path or 'lead' in request.path or 'salesrepresentative' in request.path or 'clientinteractiontype' in request.path or 'clientinteraction' in request.path or 'salesstage' in request.path or 'opportunity' in request.path or 'proposal' in request.path or 'contract' in request.path or 'projectcommunication' in request.path or 'clientfollowup' in request.path or 'clientsatisfactionsurvey' in request.path %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3154">
-       
-        <span class="nav-link-text">CRM</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    data-bs-target="#submenu-3154" aria-expanded="{% if 'leadsource' in request.path or 'lead' in request.path or 'salesrepresentative' in request.path or 'clientinteractiontype' in request.path or 'clientinteraction' in request.path or 'salesstage' in request.path or 'opportunity' in request.path or 'proposal' in request.path or 'contract' in request.path or 'projectcommunication' in request.path or 'clientfollowup' in request.path or 'clientsatisfactionsurvey' in request.path %}true{% else %}false{% endif %}"
+    aria-controls="submenu-3154">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-users"></i> <!-- CRM Icon -->
+    </span>
+    <span class="nav-link-text">CRM</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3154" class="collapse submenu submenu-3154 {% if 'leadsource' in request.path or 'lead' in request.path or 'salesrepresentative' in request.path or 'clientinteractiontype' in request.path or 'clientinteraction' in request.path or 'salesstage' in request.path or 'opportunity' in request.path or 'proposal' in request.path or 'contract' in request.path or 'projectcommunication' in request.path or 'clientfollowup' in request.path or 'clientsatisfactionsurvey' in request.path %}show{% endif %}" 
         data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">
@@ -1160,44 +1192,25 @@
 </li>
 <!-- #===================================================end CRM =====================================-->
 
-{% comment %} <li class="nav-item has-submenu {% if 'client_history' in request.path  %}active{% endif %}">
-    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse"
-        data-bs-target="#submenu-3154" aria-expanded="{% if 'client_history' in request.path  %}true{% else %}false{% endif %}"
-        aria-controls="submenu-3154">
-       
-        <span class="nav-link-text">Report</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
-    <div id="submenu-3154" class="collapse submenu submenu-3154 {% if 'client_history' in request.path  %}show{% endif %}" 
-        data-bs-parent="#menu-accordion">
-        <ul class="submenu-list list-unstyled">
-            <li class="submenu-item {% if request.client_history.url_name == 'client_history' %}active{% endif %}">
-                <a class="submenu-link" href="{% url 'leadsource' %}">Client History</a>
-            </li>
-       
-        </ul>
-    </div>
-</li> {% endcomment %}
+
 
 
 <li class="nav-item has-submenu">
     <a class="nav-link submenu-toggle {% if 'report' in request.path %}active{% endif %}" 
-       href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3245" 
-       aria-expanded="{% if 'report' in request.path or 'details' in request.path or 'client_details' in request.path or 'con_details' in request.path or 'sub_con_details' in request.path or 'tk_details' in request.path or 'pay_details' in request.path or 'ld_details' in request.path or 'bd_details' in request.path %}true{% else %}false{% endif %}" 
-       aria-controls="submenu-3245">
-        <span class="nav-link-text">Report</span>
-        <span class="submenu-arrow">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-            </svg>
-        </span>
-    </a>
+    href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3245" 
+    aria-expanded="{% if 'report' in request.path or 'details' in request.path or 'client_details' in request.path or 'con_details' in request.path or 'sub_con_details' in request.path or 'tk_details' in request.path or 'pay_details' in request.path or 'ld_details' in request.path or 'bd_details' in request.path %}true{% else %}false{% endif %}" 
+    aria-controls="submenu-3245">
+    
+    <span class="nav-link-icon">
+        <i class="fas fa-chart-line"></i> <!-- Report Icon -->
+    </span>
+    <span class="nav-link-text">Report</span>
+    <span class="submenu-arrow">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </span>
+</a>
     <div id="submenu-3245" class="collapse submenu submenu-3245 {% if 'report' in request.path or 'details' in request.path or 'client_details' in request.path or 'contract_details' in request.path or 'sub_con_details' in request.path or 'tk_details' in request.path or 'pay_details' in request.path or 'ld_details' in request.path or 'bd_details' in request.path %}show{% endif %}" 
          data-bs-parent="#menu-accordion">
         <ul class="submenu-list list-unstyled">

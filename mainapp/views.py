@@ -39755,7 +39755,7 @@ def client_create(request):
                 print('errorss',form.errors) 
         
         context={      
-            'form':form,'records':master_view,"save":True
+            'form':form,'records':master_view,"save":True,"client":"active"
         }
         return render(request, 'client.html',context)
     except Exception as error:
