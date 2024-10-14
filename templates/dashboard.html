@@ -1,42 +1,250 @@
 {% extends 'base.html' %}
-
-
 {% block body_block %}
 {% load static %}
+
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    }
+
+    body {
+        background-color: #e2e2e2;
+    }
+
+    .g-mt20 {
+        margin-top: 2.67vw;
+    }
+
+    .f-tc {
+        text-align: center;
+    }
+
+    .u-tit {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    .u-part {
+        padding: 2.67vw 0; 
+        height: 50vw;
+        background-color: #fff;
+    }
+
+</style>
+<style>
+    .card.congratulation-bg {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    border-radius: 6px 6px 18px 16px;
+    background: url(../../images/bg.png);
+    background-size: cover;
+    border: 0;
+    box-shadow: none;
+    padding: 2.112rem 3.25rem;
+    }
+
+    .card.congratulation-bg p {
+    font-size: 0.937rem;
+    color: #ffffff;
+    }
+
+    .card .card-body {
+    padding: 1.875rem 1.875rem;
+    }
+
+
+    .card.congratulation-bg {
+    background: url("{% static 'assets/images/dashboard/house.jpg' %}") no-repeat center center;
+    background-size: cover; /* Cover the entire card area */
+    color: white; /* Ensure text color contrasts with background */
+    }
+    .row.align-items-stretch {
+    display: flex;
+    flex-wrap: wrap;
+    }
+
+    .box, .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    }
+
+    .h-100 {
+    height: 100%;
+    }
+
+    canvas {
+        background-color: #ffffff;
+        border: 1px solid black;
+    }
+
+</style>
+
+<style></style>
+<script src="//s.thsi.cn/ijijin/js/FundCharts.newest.js?20190920"></script>
+
+
 <div class="container-fluid">
-    <div class="app-content pt-3 p-md-3 p-lg-4">
-        <div class="container-xl">
-            
-            <div class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration" role="alert">
-                <div class="inner">
-                    <div class="app-card-body p-3 p-lg-4">
-                        <h3 class="mb-3">Welcome!</h3>
-                        <form action="#"  method="post">
-                            {% csrf_token %}
-                        <div class="row gx-5 gy-3">
-                            <div class="col-12 col-lg-9">
-                                <button class="form-control btn btn-success" type="submit" name="setup" value="setup_values">SetUp</button>
-                            </div>
-                            <div class="col-12 col-lg-9">
-                                <div>Have a try</div>
-                            </div><!--//col-->
-                            
-                        </div>
-                    </form><!--//row-->
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div><!--//app-card-body-->
-                    
-                </div><!--//inner-->
-            </div><!--//app-card-->
-         
+    <div class="row">
+        <div class="col-sm-6 mb-4 mb-xl-0">
+            <div class="d-lg-flex align-items-center">
                 
-         
+            </div>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card dash-card-border" style="border: 1px solid #ff00ea; background: url('https://www.transparenttextures.com/patterns/graph-paper.png'), linear-gradient(135deg, #ff00ea, #cdb1ca);">
+                <div class="card-body dash-icon text-center">
+                    <!-- Updated the icon with a summery, rounded effect and a subtle shadow -->
+                    <i class="fas fa-user-circle dashcard-icon" style="background-color: #fff; color: #ff00ea; font-size: 50px; padding: 12px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"></i>
+                    <strong>
+                        <div class="dashcard-number" style="color: #fff; font-size: 24px;">10</div>
+                        <div class="dashcard-name" style="color: #fff; font-size: 18px;">Clients</div>
+                    </strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card dash-card-border" style="border: 1px solid #ffee00; background: linear-gradient(135deg, #afae9f, #ffee00);">
+                <div class="card-body dash-icon text-center">
+                    <!-- Updated icon with a summery background and shadow effect -->
+                    <i class="fas fa-briefcase dashcard-icon" style="background-color: #fff; color: #ffee00; font-size: 50px; padding: 15px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);"></i>
+                    
+                    <strong>
+                        <div class="dashcard-number" style="color: white; font-size: 24px;">12</div>
+                        <div class="dashcard-name" style="color: white; font-size: 18px;">TASKS</div>
+                    </strong>
+                </div>
+            </div>
             
-        </div><!--//container-fluid-->
-    </div><!--//app-content-->
+        </div>
+        <div class="col-md-3">
+            <div class="card dash-card-border" style="border: 1px solid #00ff22; background: linear-gradient(135deg, #00ff22, #00bfae);">
+                <div class="card-body dash-icon text-center">
+                    <!-- Updated icon with a more dynamic background and shadow -->
+                    <i class="fas fa-receipt dashcard-icon" style="background-color: #fff; color: #00bfae; font-size: 50px; padding: 15px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);"></i>
+                    
+                    <strong>
+                        <div class="dashcard-number" style="color: white; font-size: 24px;">5</div>
+                        <div class="dashcard-name" style="color: white; font-size: 18px;">BID</div>
+                    </strong>
+                </div>
+            </div>
+            
+            </div>
+            <div class="col-md-3">
+                <div class="card dash-card-border" style="border: 1px solid #007bff; background: linear-gradient(135deg, #007bff, #00c6ff);">
+                    <div class="card-body dash-icon text-center">
+                        <!-- Updated icon with dynamic background, shadow, and larger size -->
+                        <i class="fas fa-tasks dashcard-icon" style="background-color: #fff; color: #00c6ff; font-size: 50px; padding: 15px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"></i>
+                        
+                        <strong>
+                            <div class="dashcard-number" style="color: white; font-size: 24px;">6</div>
+                            <div class="dashcard-name" style="color: white; font-size: 18px;">NEW INVOICES</div>
+                        </strong>
+                    </div>
+                </div>
+                
+            </div>
+       
+    </div><br>
 </div>
+
+<div id="wrapper">
+    <div class="content-area">
+        <div class="container-fluid">
+            <div class="row d-flex align-items-stretch"> <!-- Add d-flex and align-items-stretch -->
+                <div class="col-md-6 d-flex"> <!-- Add d-flex to ensure both cards take full height -->
+                    <div class="card congratulation-bg text-center mt-4 h-100 flex-fill"> <!-- Use flex-fill to stretch -->
+                        <div class="card-body pb-5">
+                            <h2 class="mt-3 text-white mb-3 font-weight-bold">Welcome (ADMIN)</h2>
+                            <p>You have successfully managed your clients' cases.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex"> <!-- Keep d-flex for the same height -->
+                    <div class="col-sm-12 grid-margin stretch-card mt-4 h-100 flex-fill">
+                        <div class="card h-100 flex-fill"> <!-- Ensure flex-fill is applied to this card too -->
+                            <div class="card-body text-center bg-custom" style="background-image: url('{% static 'assets/images/dashboard/bilder.jpg' %}'); background-size: cover; background-position: center;">
+                                <div class="row h-100">
+                                    <div class="col-lg-12 d-flex flex-column justify-content-center">
+                                        <h4 class="text-white" id="location"></h4>
+                                        <h3 class="font-weight-bold text-white" id="running-time"></h3>
+                                        <div class="d-lg-flex align-items-baseline mb-3 justify-content-center">
+                                            <h1 class="text-white font-weight-bold">23<sup class="font-weight-light"><small>o</small><small class="font-weight-medium">c</small></sup></h1>
+                                            <p class="text-muted ms-3">Partly cloudy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End row --><br>
+        </div>
+        
+    </div>
+</div>
+<div>
+    <div id="app">
+        <h3 class="f-tc u-tit">chart</h3>
+        <section id="bar1" class="u-part"></section>
+    </div>
+</div>
+<script>
+    const BarChart = FundCharts.bar;
+    
+    const ua = navigator.userAgent.toLowerCase(),
+        IS_PHONE = ~ua.indexOf('iphone') || ~ua.indexOf('android'),
+        events = IS_PHONE ? ['touchstart', 'touchmove'] : ['mousemove'];
+
+    // chart 1
+    const chart1 = new BarChart({
+        id: 'bar1',
+        xaxis: ['Clients', 'Projects', 'Task', 'Bid', 'Invoice', 'Contract', 'Proposal', 'Team Member'],
+        datas: [
+            [10, 5, 12, 5, 6, 4, 5]
+        ],
+        events: events,    // for mobile
+        hover: function (index, yValues, xValues, x) {
+            console.log(index, yValues, xValues, x);
+            
+            var ctx = chart1.ctx;
+            var datasets = chart1.datasets[0];
+            var _zero = chart1.drawer.zeroY;  
+
+            // Clear the previous tooltip display
+            ctx.clearRect(0, 0, chart1.width, chart1.height);
+
+            ctx.lineWidth = 1;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.font = '12px Arial';
+            ctx.fillStyle = '#000';
+
+            // Calculate the tooltip position based on the data point
+            const arrowX = datasets[index].x + datasets[index].width / 2;
+            const arrowY = datasets[index].y + (datasets[index].y > _zero ? -15 : 15); // Adjust Y position above or below the bar
+
+            // Display the value near the bar
+            ctx.fillText(
+                yValues[0].toFixed(1), 
+                arrowX,
+                arrowY
+            );
+        }
+    });
+
+    chart1.init();
+</script>
+
+
 
 {% endblock %}
 {% block script_block %}
 
-{% endblock  %}
+{% endblock %}
