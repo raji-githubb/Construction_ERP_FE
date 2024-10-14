@@ -904,4 +904,15 @@ urlpatterns = [
     path('tenderproposalmanagement-delete/<pk>/', tenderproposalmanagement_delete, name='tenderproposalmanagement_delete'),
     path('masters-base', master_base, name='master_base'),
     
+    #Report================
+    
+    path('details', project_details, name='details'),
+    path('client-details', client_details, name='client_details'),
+    path('con-details', contract_details, name='con_details'),
+    path('sub-con-details', sub_contract_details, name='sub_con_details'),
+    path('tk-details', task_list, name='tk_details'),
+    path('pay-details', payment_list, name='pay_details'),
+    path('Ld-details', lead_details, name='ld_details'),
+    path('bd-details', bid_details, name='bd_details'),
+    
 ]

@@ -40266,4 +40266,387 @@ def master_base(request):
    
     except Exception as error:
         return render(request, "error.html", {"error": error})     
+    
+    
+def project_details(request):
+    try:
+        # token = request.session['user_token']
+        # form=BidQualificationForm()
+        # MSID= get_service_plan('view bidqualification')
+        # if MSID is None:
+        #     print('MISID not found')
+   
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+
+        # if request.method == "POST":
+        #     form = BidQualificationForm(request.POST,)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create bidqualification')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['response_due_date'] = cleaned_data['response_due_date'].strftime('%Y-%m-%d')
+                     
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/bidqualification')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
+        
+        context={      
+            # 'form':form,'records':master_view,"save":True
+            "project_details_active":"active"
+        }
+        return render(request, 'project_details.html',context)
+    except Exception as error:
+        return render(request, "error.html", {"error": error})    
+    
+    
+def client_details(request):
+    try:
+        # token = request.session['user_token']
+        # form=BidQualificationForm()
+        # MSID= get_service_plan('view bidqualification')
+        # if MSID is None:
+        #     print('MISID not found')
+   
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+
+        # if request.method == "POST":
+        #     form = BidQualificationForm(request.POST,)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create bidqualification')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['response_due_date'] = cleaned_data['response_due_date'].strftime('%Y-%m-%d')
+                     
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/bidqualification')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
+        
+        context={      
+            # 'form':form,'records':master_view,"save":True
+        }
+        return render(request, 'client_details.html',context)
+    except Exception as error:
+        return render(request, "error.html", {"error": error})       
        
+
+def contract_details(request):
+    try:
+        # token = request.session['user_token']
+        # form=BidQualificationForm()
+        # MSID= get_service_plan('view bidqualification')
+        # if MSID is None:
+        #     print('MISID not found')
+   
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+
+        # if request.method == "POST":
+        #     form = BidQualificationForm(request.POST,)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create bidqualification')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['response_due_date'] = cleaned_data['response_due_date'].strftime('%Y-%m-%d')
+                     
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/bidqualification')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
+        
+        context={      
+            # 'form':form,'records':master_view,"save":True
+        }
+        return render(request, 'contract_details.html',context)
+    except Exception as error:
+        return render(request, "error.html", {"error": error})              
+    
+    
+def sub_contract_details(request):
+    try:
+        # token = request.session['user_token']
+        # form=BidQualificationForm()
+        # MSID= get_service_plan('view bidqualification')
+        # if MSID is None:
+        #     print('MISID not found')
+   
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+
+        # if request.method == "POST":
+        #     form = BidQualificationForm(request.POST,)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create bidqualification')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['response_due_date'] = cleaned_data['response_due_date'].strftime('%Y-%m-%d')
+                     
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/bidqualification')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
+        
+        context={      
+            # 'form':form,'records':master_view,"save":True
+        }
+        return render(request, 'sub_contract_details.html',context)
+    except Exception as error:
+        return render(request, "error.html", {"error": error})        
+    
+    
+def task_list(request):
+    try:
+        # token = request.session['user_token']
+        # form=BidQualificationForm()
+        # MSID= get_service_plan('view bidqualification')
+        # if MSID is None:
+        #     print('MISID not found')
+   
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+
+        # if request.method == "POST":
+        #     form = BidQualificationForm(request.POST,)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create bidqualification')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['response_due_date'] = cleaned_data['response_due_date'].strftime('%Y-%m-%d')
+                     
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/bidqualification')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
+        
+        context={      
+            # 'form':form,'records':master_view,"save":True
+        }
+        return render(request, 'task_list.html',context)
+    except Exception as error:
+        return render(request, "error.html", {"error": error})            
+    
+def payment_list(request):
+    try:
+        # token = request.session['user_token']
+        # form=BidQualificationForm()
+        # MSID= get_service_plan('view bidqualification')
+        # if MSID is None:
+        #     print('MISID not found')
+   
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+
+        # if request.method == "POST":
+        #     form = BidQualificationForm(request.POST,)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create bidqualification')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['response_due_date'] = cleaned_data['response_due_date'].strftime('%Y-%m-%d')
+                     
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/bidqualification')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
+        
+        context={      
+            # 'form':form,'records':master_view,"save":True
+        }
+        return render(request, 'payment_list.html',context)
+    except Exception as error:
+        return render(request, "error.html", {"error": error})       
+    
+    
+def lead_details(request):
+    try:
+        # token = request.session['user_token']
+        # form=BidQualificationForm()
+        # MSID= get_service_plan('view bidqualification')
+        # if MSID is None:
+        #     print('MISID not found')
+   
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+
+        # if request.method == "POST":
+        #     form = BidQualificationForm(request.POST,)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create bidqualification')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['response_due_date'] = cleaned_data['response_due_date'].strftime('%Y-%m-%d')
+                     
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/bidqualification')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
+        
+        context={      
+            # 'form':form,'records':master_view,"save":True
+        }
+        return render(request, 'lead_details.html',context)
+    except Exception as error:
+        return render(request, "error.html", {"error": error})                     
+    
+def bid_details(request):
+    try:
+        # token = request.session['user_token']
+        # form=BidQualificationForm()
+        # MSID= get_service_plan('view bidqualification')
+        # if MSID is None:
+        #     print('MISID not found')
+   
+        # data={
+        #     'ms_id':MSID,
+        #     'ms_payload':{}
+        # }
+        # json_data = json.dumps(data)
+        # response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        # master_view = response['data']
+
+        # if request.method == "POST":
+        #     form = BidQualificationForm(request.POST,)
+        #     if form.is_valid():
+        #         MSID= get_service_plan('create bidqualification')
+        #         if MSID is None:
+        #             print('MISID not found')      
+        #         cleaned_data = form.cleaned_data
+        #         cleaned_data['response_due_date'] = cleaned_data['response_due_date'].strftime('%Y-%m-%d')
+                     
+        #         data={
+        #             'ms_id':MSID,
+        #             'ms_payload':cleaned_data
+        #         } 
+        #         json_data = json.dumps(data)
+        #         response = call_post_method_with_token_v2(BASEURL,ENDPOINT,json_data,token)
+        #         print('response',response)
+        #         if response['status_code'] ==  0:                  
+        #             messages.info(request, "Well Done..! Application Submitted..")
+        #             return redirect('/bidqualification')
+        #         else:
+        #             messages.info(request, "Oops..! Application Failed to Submitted..")
+        #     else:
+        #         print('errorss',form.errors) 
+        
+        context={      
+            # 'form':form,'records':master_view,"save":True
+        }
+        return render(request, 'bid_details.html',context)
+    except Exception as error:
+        return render(request, "error.html", {"error": error})        
+    
